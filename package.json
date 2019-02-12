@@ -1,0 +1,24 @@
+{
+  "name": "bot-why",
+  "version": "0.0.1",
+  "description": "A sample Slack bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adamyagiz/bot-why.git"
+  },
+  "author": "Adam Yagiz <akyagiz@gmail.com> (https://adamyagiz.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adamyagiz/bot-why/issues"
+  },
+  "homepage": "https://github.com/adamyagiz/bot-why#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "dotenv": "^6.2.0",
+    "slackbots": "^1.2.0"
+  }
+}
