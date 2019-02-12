@@ -1,9 +1,12 @@
+require('dotenv').config({
+    path: 'settings.env',
+});
 const SlackBot = require('slackbots');
 const axios = require('axios');
 
 const bot = new SlackBot({
-    token: 'xoxb-319819101174-549476859751-QfoSM4bRuWpdVOkfXkuB3gQu',
-    name: 'baxter',
+    token: process.env.API_TOKEN,
+    name: process.env.BOT_NAME,
 });
 
 /**
