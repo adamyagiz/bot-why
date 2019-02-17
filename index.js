@@ -12,15 +12,24 @@ const bot = new SlackBot({
 /**
  * Respond to the user
  */
-function response() {
-    axios.get('https://api.icndb.com/jokes/random').then(res => {
-        const rsvp = res.data.value.joke;
-        const params = {
-            icon_emoji: ':joy:',
-        };
-
-        bot.postMessageToChannel('general', rsvp, params);
-    });
+function response(trigger) {
+    switch (trigger) {
+        case 'joke':
+            axios.get('https://api.icndb.com/jokes/random').then(res => {
+                const rsvp = res.data.value.joke;
+                const params = {
+                    icon_emoji: ':joy:',
+                };
+                bot.postMessageToChannel('general', rsvp, params);
+            });
+            break;
+        case 'here':
+            bot.postMessageToChannel('general', `Yes, I'm here!`);
+            break;
+        default:
+            bot.postMessageToChannel('general', `I'm sorry. I don't understand :confused:`);
+            break;
+    }
 }
 
 /**
@@ -31,7 +40,7 @@ function showHelp() {
         icon_emoji: ':question:',
     };
 
-    bot.postMessageToChannel('general', `Type @Baxter 'beer' to get a response`, params);
+    bot.postMessageToChannel('general', `Type @Baxter 'tell me a joke' to get a response`, params);
 }
 
 /**
@@ -39,10 +48,14 @@ function showHelp() {
  * @param {string} message
  */
 function handleMessage(message) {
-    if (message.includes(' beer')) {
-        response();
+    if (message.includes(' tell me a joke')) {
+        response('joke');
     } else if (message.includes(' help')) {
         showHelp();
+    } else if (message.includes(' are you there')) {
+        response('here');
+    } else {
+        response();
     }
 }
 
